@@ -1,6 +1,6 @@
-# `customize-cra`
+# `customize-cra-5`
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[Forked from arackaf/customize-cra](https://github.com/arackaf/customize-cra), change to support create-react-app@5.x
 
 📌📌 **Breaking change:** With the `1.0` release of customize-cra breaking changes have been made to the `addLessLoader` customizer to support the changes to `create-react-app` in [#7876](https://github.com/facebook/create-react-app/pull/7876). Please follow the migration guide in [#253](https://github.com/arackaf/customize-cra/issues/253).
 
@@ -22,7 +22,7 @@ This project provides a set of utilities to customize [`create-react-app`](https
 This project relies on [`react-app-rewired`](https://github.com/timarney/react-app-rewired/). You'll need to install that in order for `customize-cra` to work.
 
 ```bash
-yarn add customize-cra react-app-rewired --dev
+yarn add customize-cra-5 react-app-rewired --dev
 ```
 
 ## ❗ Warning
@@ -55,8 +55,8 @@ const {
   disableEsLint,
   addBundleVisualizer,
   addWebpackAlias,
-  adjustWorkbox
-} = require("customize-cra");
+  adjustWorkbox,
+} = require("customize-cra-5");
 const path = require("path");
 
 module.exports = override(
@@ -71,14 +71,14 @@ module.exports = override(
 
   // add an alias for "ag-grid-react" imports
   addWebpackAlias({
-    ["ag-grid-react$"]: path.resolve(__dirname, "src/shared/agGridWrapper.js")
+    ["ag-grid-react$"]: path.resolve(__dirname, "src/shared/agGridWrapper.js"),
   }),
 
   // adjust the underlying workbox
-  adjustWorkbox(wb =>
+  adjustWorkbox((wb) =>
     Object.assign(wb, {
       skipWaiting: true,
-      exclude: (wb.exclude || []).concat("index.html")
+      exclude: (wb.exclude || []).concat("index.html"),
     })
   )
 );
@@ -93,8 +93,8 @@ const {
   override,
   disableEsLint,
   overrideDevServer,
-  watchAll
-} = require("customize-cra");
+  watchAll,
+} = require("customize-cra-5");
 
 module.exports = {
   webpack: override(
@@ -104,7 +104,7 @@ module.exports = {
   devServer: overrideDevServer(
     // dev server plugin
     watchAll()
-  )
+  ),
 };
 ```
 
@@ -155,6 +155,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
